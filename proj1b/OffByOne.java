@@ -1,9 +1,6 @@
-import org.junit.Test;
-
-public class OffByOne implements CharacterComparator{
+public class OffByOne implements CharacterComparator {
     @Override
-    public boolean equalChars(char x, char y){
-        int diff = Math.abs(x - y);
-        return diff == 1;
+    public boolean equalChars(char x, char y) {
+        return Math.abs(x - y) == 1;
     }
 }
