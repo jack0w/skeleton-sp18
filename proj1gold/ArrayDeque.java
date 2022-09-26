@@ -17,9 +17,9 @@ public class ArrayDeque<T> {
         size = 0;
     }
 
-    private void resize(int capacity){
+    private void resize(int capacity) {
         T [] a = (T []) new Object[capacity];
-        int firstLength = (front+1+size) > items.length ? items.length - front - 1 : size;
+        int firstLength = (front + 1 + size) > items.length ? items.length - front - 1 : size;
         int secondLength = size - firstLength;
         System.arraycopy(items, front + 1, a, 0, firstLength);
         System.arraycopy(items, 0, a, firstLength, secondLength);
@@ -28,74 +28,72 @@ public class ArrayDeque<T> {
         back = size;
     }
 
-    public void addFirst(T item){
-        if (size == items.length){
+    public void addFirst(T item) {
+        if (size == items.length) {
             resize(items.length * 2);
         }
         items[front] = item;
         front = (front - 1 + items.length) % items.length;
-        size ++;
+        size++;
     }
 
-    public void addLast(T item){
-        if (size == items.length){
+    public void addLast(T item) {
+        if (size == items.length) {
             resize(items.length * 2);
         }
         items[back] = item;
         back = (back + 1 + items.length) % items.length;
-        size ++;
+        size++;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size == 0;
     }
 
-    public int size(){
+    public int size() {
         return size;
     }
 
-    public void printDeque(){
+    public void printDeque() {
         int i = (front + 1 + items.length) % items.length;
-        while (i != back){
+        while (i != back) {
             System.out.print(items[i]);
             System.out.print(" ");
             i = (i + 1 + items.length) % items.length;
         }
     }
 
-    public T removeFirst(){
-        if (size < items.length * 0.25 && size > 8){
+    public T removeFirst() {
+        if (size < items.length * 0.25 && size > 8) {
             resize(items.length / 2);
         }
-        if (size != 0){
+        if (size != 0) {
             front = (front + 1 + items.length) % items.length;
             T value = items[front];
             items[front] = null;
-            size --;
+            size--;
             return value;
-        }
-        else{
+        } else {
             return null;
         }
     }
 
-    public T removeLast(){
-        if (size < items.length * 0.25 && size > 8){
+    public T removeLast() {
+        if (size < items.length * 0.25 && size > 8) {
             resize(items.length / 2);
         }
-        if (size != 0){
+        if (size != 0) {
             back = (back - 1 + items.length) % items.length;
             T value = items[back];
             items[back] = null;
-            size --;
+            size--;
             return value;
-        }
-        else{
+        } else {
             return null;
         }
     }
 
-    public T get(int index){
+    public T get(int index) {
         return items[(front + 1 + index + items.length) % items.length];
     }
 }
