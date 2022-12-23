@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
+import java.util.HashSet;
 
 
 import static byog.Core.Room.overlapOnX;
@@ -179,6 +180,19 @@ public class RandomWorldGenerator {
             result[i] = RandomUtils.uniform(random, min, max);
         }
         return result;
+    }
+
+    public HashSet<Point> getAllowedCoordinates(ArrayList<Room> roomList, ArrayList<Hallway> hallwayList){
+
+        HashSet<Point> allPoints = new HashSet<>();
+        for (Room room: roomList){
+            allPoints.addAll(room.getPoints());
+        }
+        for (Hallway hallway: hallwayList){
+            allPoints.addAll(hallway.getPoints());
+        }
+
+        return allPoints;
     }
 
     public static void main(String[] args) {

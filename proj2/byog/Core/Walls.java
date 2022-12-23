@@ -113,6 +113,15 @@ public class Walls {
     }
 
     /**
+     * Return the Walls representation as a  List of Points, representing the set of coordinates
+     * occupied by the all the walls in the world.
+     * @return the set of points that the walls occupy.
+     */
+    public ArrayList<Point> getPoints() {
+        return points;
+    }
+
+    /**
      * Draws the Walls on the world which they reference.
      */
     public void draw() {

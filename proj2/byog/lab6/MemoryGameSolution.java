@@ -95,6 +95,7 @@ public class MemoryGameSolution {
         drawFrame(input);
 
         while (input.length() < n) {
+
             if (!StdDraw.hasNextKeyTyped()) {
                 continue;
             }
