@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 
 import static byog.Core.Room.overlapOnX;
@@ -99,7 +100,7 @@ public class RandomWorldGenerator {
             for (int j = 0; j < numTries; j++) {
                 Room room = new Room(new Point(x, y), widths[i], heights[i], floor, wall, world);
                 List<Room> overlapping = rooms.stream().filter(
-                        (r) -> overlapOnX(r, room) && overlapOnY(r, room)).toList();
+                        (r) -> overlapOnX(r, room) && overlapOnY(r, room)).collect(Collectors.toList());
                 if (overlapping.isEmpty()) {
                     rooms.add(room);
                     break;

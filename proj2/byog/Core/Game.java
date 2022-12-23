@@ -134,20 +134,28 @@ public class Game {
     private void movePlayerWithString(String movements, TETile[][] world, Player pl, ArrayList<Room> roomList, ArrayList<Hallway> hallwayList) {
         for (char c : movements.toCharArray()) {
             switch (c) {
-                case Keys.UP -> pl.moveUp();
-                case Keys.DOWN -> pl.moveDown();
-                case Keys.LEFT -> pl.moveLeft();
-                case Keys.RIGHT -> pl.moveRight();
-                case Keys.PRE_QUIT_SAVE -> {
+                case Keys.UP:
+                    pl.moveUp();
+                    break;
+                case Keys.DOWN:
+                    pl.moveDown();
+                    break;
+                case Keys.LEFT:
+                    pl.moveLeft();
+                    break;
+                case Keys.RIGHT:
+                    pl.moveRight();
+                    break;
+                case Keys.PRE_QUIT_SAVE:
                     int i = movements.indexOf(c);
                     if (movements.charAt(i + 1) == Keys.QUIT_SAVE) {
                         gameState.setState(roomList,hallwayList, player.position());
                         GameState.save(gameState, STATE_FILENAME);
                         return;
                     }
-                }
-                default -> {
-                }
+                    break;
+                default:
+                    break;
             }
         }
     }
