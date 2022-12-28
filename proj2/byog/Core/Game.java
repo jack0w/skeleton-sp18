@@ -107,8 +107,8 @@ public class Game {
         walls.draw();
         player.draw();
         // THIS LINE IS ONLY REMOVED TO BE ABLE TO RUN WITH THE AUTOGRADER
-        ter.initialize(WIDTH, HEIGHT);
-        ter.renderFrame(gameWorld);
+        //ter.initialize(WIDTH, HEIGHT);
+        //ter.renderFrame(gameWorld);
         return gameWorld;
     }
 
