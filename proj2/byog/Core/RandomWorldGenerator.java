@@ -196,6 +196,15 @@ public class RandomWorldGenerator {
         return allPoints;
     }
 
+    /**
+     * Generates all the walls as the boundaries of the coordinates passed as parameters.
+     * @param coordinates the points that comprise the geometry around which to draw the walls.
+     * @return a Walls object to be drawn in the world.
+     */
+    public Walls generateWalls(HashSet<Point> coordinates) {
+        return new Walls(coordinates, wall, world);
+    }
+
     public static void main(String[] args) {
         int WIDTH = 150;
         int HEIGHT = 60;

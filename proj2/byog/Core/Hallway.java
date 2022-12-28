@@ -5,7 +5,7 @@ import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 import java.util.ArrayList;
 
-public class Hallway {
+public class Hallway{
     /* Position of start point. */
     private final int startX;
     private final int startY;

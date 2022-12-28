@@ -7,7 +7,7 @@ import byog.TileEngine.Tileset;
 import java.util.ArrayList;
 
 import java.lang.Math;
-
+import java.io.Serializable;
 /**
  * Room
  * Represents a square room in the game.
@@ -15,7 +15,7 @@ import java.lang.Math;
  * the floor and the walls, and by the world in which it is placed.
  * The walls representation is not included in this class.
  */
-public class Room implements Comparable<Room> {
+public class Room implements Comparable<Room>{
     /* Position of the room in the world, lower left corner. */
     private final int x;
     private final int y;

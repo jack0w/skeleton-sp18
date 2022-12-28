@@ -1,6 +1,7 @@
 package byog.Core;
+import java.io.Serializable;
 
-public class Point{
+public class Point implements Serializable{
     private final int x;
     private final int y;
 

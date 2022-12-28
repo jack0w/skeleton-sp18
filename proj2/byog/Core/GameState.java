@@ -34,10 +34,8 @@ public class GameState implements Serializable {
 
     /* Variables that are serialized. */
 
-    /* The set of rooms */
-    private ArrayList<Room> roomList;
-    /* The set of hallways */
-    private ArrayList<Hallway> hallwayList;
+    /* Wall points */
+    private HashSet<Point> wallsPoints;
     /* Position of the player in the world. */
     private HashSet<Point> allowedPoints;
     private Point playerPosition;
@@ -53,17 +51,24 @@ public class GameState implements Serializable {
         this.playerTile = playerTileP;
     }
 
+    public HashSet<Point> getAllowedPoints() {
+        return allowedPoints;
+    }
+
+    private void setAllowedPoints(HashSet<Point> allowedPointsP) {
+        this.allowedPoints = allowedPointsP;
+    }
+
+    public HashSet<Point> getWallsPoints() {
+        return wallsPoints;
+    }
+
+    private void setWallsPoints(HashSet<Point> wallsP) {
+        this.wallsPoints = wallsP;
+    }
 
     public Point getPlayerPosition() {
         return playerPosition;
-    }
-
-    public void setRoomList(ArrayList<Room> roomList){
-        this.roomList = roomList;
-    }
-
-    public void setHallwayList(ArrayList<Hallway> hallwayList){
-        this.hallwayList = hallwayList;
     }
 
     private void setPlayerPosition(Point playerPositionP) {
@@ -89,20 +94,6 @@ public class GameState implements Serializable {
         return new Player(playerPosition, allowedPoints, playerTile, world);
     }
 
-    /*
-     * Return a set of points which player can move on.
-     */
-    public HashSet<Point> getAllowedPoints() {
-        return allowedPoints;
-    }
-
-    public ArrayList<Room> getRoomList() {
-        return roomList;
-    }
-
-    public ArrayList<Hallway> getHallwayList() {
-        return hallwayList;
-    }
 
     /**
      * Reads the file that contains the game state, and returns a GameState instance.
@@ -135,19 +126,14 @@ public class GameState implements Serializable {
         return null;
     }
 
-    /**
-     * Sets the game state with room list, hallway list and player position
-     * @param roomList is the list of available rooms.
-     * @param hallwayList is the list of available hallways.
-     * @param playerPos is the current position of the player.
-     */
-    public void setState(ArrayList<Room> roomList, ArrayList<Hallway> hallwayList, Point playerPos) {
-        if (roomList == null || hallwayList == null || playerPos == null) {
+
+    public void setState(HashSet<Point> allowedPts, HashSet<Point> wallsPts, Point playerPos) {
+        if (allowedPts == null || wallsPts == null || playerPos == null) {
             throw new IllegalArgumentException("Points for saving game state can not be null.");
         }
+        setAllowedPoints(allowedPts);
+        setWallsPoints(wallsPts);
         setPlayerPosition(playerPos);
-        setRoomList(roomList);
-        setHallwayList(hallwayList);
     }
 
     /**

@@ -37,7 +37,7 @@ public class Game {
     private static final int MAX_TRIES = 30;
 
     /* Array of world */
-    private final TETile[][] gameWorld;
+    private TETile[][] gameWorld;
     /* Coordinates on which the player can move (these points represent rooms and hallways). */
     private HashSet<Point> coordinates = null;
     /* The walls to be drawn around the traversable areas (floor of rooms and hallways). */
@@ -96,20 +96,19 @@ public class Game {
             gameState.setWorld(gameWorld);
             gameState.setPlayerTile(PLAYER_TILE);
             coordinates = gameState.getAllowedPoints();
-            roomList = gameState.getRoomList();
-            hallwayList = gameState.getHallwayList();
             player = gameState.getPlayer();
-            walls = new Walls(roomList, hallwayList, Tileset.WALL, gameWorld);
+            walls = rwg.generateWalls(coordinates);
         } else {
             return gameWorld;
         }
 
-        movePlayerWithString(commands, gameWorld, player, roomList, hallwayList);
+        movePlayerWithString(commands, gameWorld, player);
         drawAtCoordinates(coordinates, gameWorld, FLOOR_TILE);
         walls.draw();
         player.draw();
         // THIS LINE IS ONLY REMOVED TO BE ABLE TO RUN WITH THE AUTOGRADER
-        //ter.renderFrame(world);
+        ter.initialize(WIDTH, HEIGHT);
+        ter.renderFrame(gameWorld);
         return gameWorld;
     }
 
@@ -131,7 +130,7 @@ public class Game {
      * @param world is the world in which the player moves.
      * @param pl is the player.
      */
-    private void movePlayerWithString(String movements, TETile[][] world, Player pl, ArrayList<Room> roomList, ArrayList<Hallway> hallwayList) {
+    private void movePlayerWithString(String movements, TETile[][] world, Player pl) {
         for (char c : movements.toCharArray()) {
             switch (c) {
                 case Keys.UP:
@@ -149,7 +148,7 @@ public class Game {
                 case Keys.PRE_QUIT_SAVE:
                     int i = movements.indexOf(c);
                     if (movements.charAt(i + 1) == Keys.QUIT_SAVE) {
-                        gameState.setState(roomList,hallwayList, player.position());
+                        gameState.setState(coordinates, new HashSet<>(walls.getPoints()), player.position());
                         GameState.save(gameState, STATE_FILENAME);
                         return;
                     }
@@ -208,5 +207,31 @@ public class Game {
         Matcher matcher = pattern.matcher(input);
         int start = matcher.find() ? matcher.end() : 0;
         return input.substring(start);
+    }
+
+    public static void main(String[] args) {
+        Game game = new Game();
+        //Game game2 = new Game();
+        //TETile[][] world1 = game.playWithInputString("n5051279278428298655sssdddwswa:q");
+        TETile[][] world1 = game.playWithInputString("l");
+        //TETile[][] world2 = game.playWithInputString("n1a");
+        /*
+        System.out.println(world1.length);
+        System.out.println(world1[0].length);
+        System.out.println(world2.length);
+        System.out.println(world2[0].length);
+        for (int i = 0; i<world1.length; i++){
+            for (int j = 0; j<world1[0].length; j++){
+                if (!world1[i][j].equals(world2[i][j])){
+                    System.out.println(i);
+                    System.out.println(j);
+                }
+
+            }
+        }
+        */
+
+
+
     }
 }
