@@ -11,6 +11,9 @@ public class Percolation {
     private final WeightedQuickUnionUF blockBackWash;
 
     public Percolation (int N) {
+        if (N <=0) {
+            throw new java.lang.IllegalArgumentException();
+        }
         size = N;
         grid = new boolean[N][N]; //Default value of bool is FALSE
         numberOfOpenSites = 0;

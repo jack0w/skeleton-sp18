@@ -12,7 +12,7 @@ public class PercolationStats {
         }
         this.T = T;
         thresholds = new double[T];
-        for (int i = 0; i <N; i++) {
+        for (int i = 0; i < T; i++) {
             Percolation percolation = pf.make(N);
             while (!percolation.percolates()) {
                 percolation.open(StdRandom.uniform(N), StdRandom.uniform(N));
@@ -47,7 +47,7 @@ public class PercolationStats {
 
     public static void main(String[] args) {
         PercolationFactory PF = new PercolationFactory();
-        PercolationStats PS = new PercolationStats(25, 25, PF);
+        PercolationStats PS = new PercolationStats(20, 10, PF);
         StdOut.println(PS.mean());
         StdOut.println(PS.stddev());
         StdOut.println(PS.confidenceLow());
