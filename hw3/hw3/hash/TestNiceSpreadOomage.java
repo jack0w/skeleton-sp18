@@ -1,5 +1,6 @@
 package hw3.hash;
 
+import edu.princeton.cs.algs4.StdOut;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
@@ -39,7 +40,6 @@ public class TestNiceSpreadOomage {
         for (int i = 0; i < N; i += 1) {
             oomages.add(NiceSpreadOomage.randomNiceSpreadOomage());
         }
-
         assertTrue(OomageTestUtility.haveNiceHashCodeSpread(oomages, 10));
     }
 }
