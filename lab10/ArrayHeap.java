@@ -100,6 +100,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     /**
      * Bubbles up the node currently at the given index.
      */
+    /*
     private void swim(int index) {
         // Throws an exception if index is invalid. DON'T CHANGE THIS LINE.
         validateSinkSwimArg(index);
@@ -108,10 +109,26 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
             index = parentIndex(index);
         }
     }
+    */
+    private void swim(int index) {
+        // Throws an exception if index is invalid. DON'T CHANGE THIS LINE.
+        validateSinkSwimArg(index);
+
+        /** TODO: Your code here. */
+        if (index == 1) {
+            return;
+        }
+        if (min(index, parentIndex(index)) == index) {
+            swap(index, parentIndex(index));
+            swim(parentIndex(index));
+        }
+        return;
+    }
 
     /**
      * Bubbles down the node currently at the given index.
      */
+    /*
     private void sink(int index) {
         // Throws an exception if index is invalid. DON'T CHANGE THIS LINE.
         validateSinkSwimArg(index);
@@ -121,11 +138,31 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
             index = minChildIndex;
         }
     }
+    */
+
+    private void sink(int index) {
+        if (!inBounds(index)) {
+            return;
+        }
+
+        // Throws an exception if index is invalid. DON'T CHANGE THIS LINE.
+        validateSinkSwimArg(index);
+
+        /** TODO: Your code here. */
+
+        int minChild = min(leftIndex(index), rightIndex(index));
+        if (min(index, minChild) == minChild) {
+            swap(index, minChild);
+            sink(minChild);
+        }
+        return;
+    }
 
     /**
      * Inserts an item with the given priority value. This is enqueue, or offer.
      * To implement this method, add it to the end of the ArrayList, then swim it.
      */
+
     @Override
     public void insert(T item, double priority) {
         /* If the array is totally full, resize. */
