@@ -5,7 +5,7 @@ public class Board implements WorldState{
     private final int[][] tiles;
     private int size;
 
-    int estimatedDistanceToGoal = -1;
+    private int estimatedDistanceToGoal = -1;
 
     public Board (int[][] tiles) {
         size = tiles.length;
