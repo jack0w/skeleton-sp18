@@ -61,6 +61,7 @@ public class Solver {
             solution.push(visit.getWorldState());
             visit = visit.getPrevNode();
         }
+        solution.push(initial);
 
     }
 

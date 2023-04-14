@@ -98,7 +98,7 @@ public class Board implements WorldState{
             return estimatedDistanceToGoal;
         }
     }
-
+    @Override
     public boolean equals(Object y) {
         if (this == y) {
             return true;
@@ -107,6 +107,9 @@ public class Board implements WorldState{
             return false;
         }
         Board other = (Board) y;
+        if (size() != other.size()) {
+            return false;
+        }
         for (int i = 0; i < size(); i++) {
             for (int j = 0; j < size(); j++) {
                 if (this.tiles[i][j] != other.tiles[i][j]) {
@@ -115,6 +118,11 @@ public class Board implements WorldState{
             }
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     /** Returns the string representation of the board. 
