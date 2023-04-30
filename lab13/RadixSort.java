@@ -16,6 +16,8 @@ public class RadixSort {
      * @return String[] the sorted array
      */
     public static String[] sort(String[] asciis) {
+
+        if (asciis.length == 0) return asciis;
         // find max length
         int max = Integer.MIN_VALUE;
         for (String s : asciis) {
@@ -98,6 +100,7 @@ public class RadixSort {
     }
 
     public static void main(String[] args) {
+        /*
         String[] asciis = new String[3];
         asciis[0] = "z";
         asciis[1] = "ya";
@@ -110,6 +113,10 @@ public class RadixSort {
         for (String s : sorted) {
             System.out.println(s);
         }
+        */
 
+
+        String[] asciis2 = new String[0];
+        String[] sorted2 = sort(asciis2);
     }
 }
